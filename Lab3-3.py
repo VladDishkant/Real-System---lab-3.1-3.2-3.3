@@ -7,7 +7,7 @@ import kivy.uix.button
 
 
 class GenesContainer:
-    def __init__(self, count=10, coefs=(1,2,3,4), y=14, mutation_probability=0.05):
+    def __init__(self, count=10, coefs=(1,2,3,4), y=14, mutation_probability= .0):
         self.y = y
         self.length = count
         self.coefs = coefs
@@ -17,8 +17,8 @@ class GenesContainer:
         self.deltas = [i*self.coefs-self.y for i in self.genes]        
     
     def mutate(self):
-        """Mutate random gene with probability mutate_prob."""
-        if random.random() < self.mutate_prob:
+        """Mutation Chance Increases"""
+        if random.random() > self.mutate_prob:
             random.choice(self.genes).mutate()
     
     def next_generation(self):

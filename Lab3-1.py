@@ -3,6 +3,8 @@ import kivy.uix.boxlayout
 import kivy.uix.textinput
 import kivy.uix.label
 import kivy.uix.button
+import kivy.uix.popup
+import time
 
 def ferma(n):
     if n % 2 == 0:
@@ -35,9 +37,16 @@ class SimpleApp(kivy.app.App):
         if not text.isdigit():
              self.label.text = 'Введено недопустиме значення'
              return
-        text = int(text)    
 
+        start_time = time.time()
+        text = int(text)
         self.label.text = str(ferma(text))
+        end_time = time.time()
+        current_time = end_time - start_time
+        popup = kivy.uix.popup.Popup(title='Час виконання',
+                                     content=kivy.uix.label.Label(text='Час виконання: {}'.format(current_time)),
+                                     size=(400, 400))
+        popup.open()
 if __name__ == "__main__":
     simpleApp = SimpleApp()
     simpleApp.run()
